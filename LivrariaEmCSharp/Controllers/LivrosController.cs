@@ -20,5 +20,11 @@ namespace LivrariaEmCSharp.Controllers
         
             return Ok(livrosBancoFalso);
         }
+
+        [HttpGet("boasvindas")] // /api/livros/boasvindas
+        public IActionResult GetBoasVindas()
+        {
+            return Ok("Bem-vindos ao sistema de livraria!");
+        }
     }
 }
