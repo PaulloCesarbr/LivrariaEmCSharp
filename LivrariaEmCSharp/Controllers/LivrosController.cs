@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using LivrariaEmCSharp.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LivrariaEmCSharp.Controllers
@@ -7,19 +8,17 @@ namespace LivrariaEmCSharp.Controllers
     [ApiController]
     public class LivrosController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetLivros()
+
+        private readonly ILivroRepository _repository;
+
+        public LivrosController(ILivroRepository livroRepository)
         {
-        var livrosBancoFalso = new List<string>
-        {
-            "Varity",
-            "Os elefantes não esquecem",
-            "Beladonna",
-            "Hetty Potter"
-        };
-        
-            return Ok(livrosBancoFalso);
+            _repository = livroRepository;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Get() => Ok(await _repository.ListarTodos());
+
 
         [HttpGet("boasvindas")] // /api/livros/boasvindas
         public IActionResult GetBoasVindas()
