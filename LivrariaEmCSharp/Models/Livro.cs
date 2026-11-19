@@ -16,5 +16,7 @@ namespace LivrariaEmCSharp.Models
         public string Autor { get; set; } = string.Empty;
 
         public int AnoLancamento { get; set; }
+        public int CategoriaId { get; set; } // Chave estrangeira para a categoria
+        public Categoria? Categoria { get; set; } // Propriedade de navegação/busca para a categoria
     }
 }
