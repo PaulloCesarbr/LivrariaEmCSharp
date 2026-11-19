@@ -22,6 +22,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // REGISTRO PARA A INJEÇÃO DE DEPENDENCIA
 builder.Services.AddScoped<ILivroRepository, LivroRepository>();
+builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 
 var app = builder.Build();
 
