@@ -1,4 +1,5 @@
 using LivrariaEmCSharp.Data;
+using LivrariaEmCSharp.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,10 @@ var connectionString = builder.Configuration.GetConnectionString("ConexaoBanco")
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+// REGISTRO PARA A INJEÇÃO DE DEPENDENCIA
+builder.Services.AddScoped<ILivroRepository, LivroRepository>();
+builder.Services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 
 var app = builder.Build();
 

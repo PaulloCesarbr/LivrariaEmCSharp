@@ -54,6 +54,9 @@ namespace LivrariaEmCSharp.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("varchar(60)");
 
+                    b.Property<int>("CategoriaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Titulo")
                         .IsRequired()
                         .HasMaxLength(80)
@@ -61,7 +64,20 @@ namespace LivrariaEmCSharp.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoriaId");
+
                     b.ToTable("Livros");
+                });
+
+            modelBuilder.Entity("LivrariaEmCSharp.Models.Livro", b =>
+                {
+                    b.HasOne("LivrariaEmCSharp.Models.Categoria", "Categoria")
+                        .WithMany()
+                        .HasForeignKey("CategoriaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Categoria");
                 });
 #pragma warning restore 612, 618
         }
